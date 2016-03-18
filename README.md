@@ -2,8 +2,8 @@
 ####1.服务器首先联网获取ACCESS_TOKEN，然后根据获取到的access_token，生成预支付订单；
 ####2.客户端会去访问服务器获取预支付订单，主要是 prepayId、nonceStr 这两个参数；
 ####3.客户端获取到以上两个参数后；
-  //调起微信支付
-  private void sendPayReq(String prepayId, String nonceStr) {
+	 //调起微信支付
+  	private void sendPayReq(String prepayId, String nonceStr) {
 		
 		PayReq req = new PayReq();
 		req.appId = Constants.WX_APPID;
@@ -29,15 +29,14 @@
 	private String genAppSign(List<NameValuePair> params) {
 		StringBuilder sb = new StringBuilder();
 		
-		int i = 0;
-		for (; i < params.size(); i++) {
+		for (int i = 0; i < params.size(); i++) {
 			sb.append(params.get(i).getName());
 			sb.append('=');
 			sb.append(params.get(i).getValue());
 			sb.append('&');
 		}
 		sb.append("key=");
-		sb.append(Constants.WX_APP_SECRET);
-		String sign = MD5.getMessageDigest(sb.toString().getBytes());
+		sb.append(Constants.WX_APP_KEY);
+		String sign = MD5.getMessageDigest(sb.toString().getBytes()).toUpperCase();
 		return sign;
 	}
