@@ -30,7 +30,7 @@
 		StringBuilder sb = new StringBuilder();
 		
 		int i = 0;
-		for (; i < params.size() - 1; i++) {
+		for (; i < params.size(); i++) {
 			sb.append(params.get(i).getName());
 			sb.append('=');
 			sb.append(params.get(i).getValue());
